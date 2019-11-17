@@ -46,19 +46,20 @@ func TestIsReachableNeighbour(t *testing.T) {
 	}
 	type sample struct {
 		X, Y, OX, OY int
+		Case         string
 		Expected     bool
 	}
 
 	samples := func() []sample {
 		return []sample{
-			{0, 0, 0, 0, true},
-			{0, 0, 3, 3, true},
-			{0, 0, -1, 0, false},
-			{0, 0, 0, -1, false},
-			{0, 3, 0, 1, false},
-			{3, 0, 1, 0, false},
-			{3, 3, 1, 0, false},
-			{3, 3, 1, 1, false},
+			{0, 0, 0, 0, "top left cell without offsets is in range", true},
+			{0, 0, 3, 3, "top right cell without offsets is in range", true},
+			{0, 0, -1, 0, "top left cell with offset x-1 is out of range", false},
+			{0, 0, 0, -1, "top left cell with offset y-1 is out of range", false},
+			{0, 3, 0, 1, "bottom left cell with offset y+1 is out of range", false},
+			{3, 0, 1, 0, "top right cell with offset x+1 is out of range", false},
+			{3, 3, 1, 0, "bottom right cell with offset x+1 is out of range", false},
+			{3, 3, 1, 1, "bottom right cell with offset y+1 is out of range", false},
 		}
 	}
 
