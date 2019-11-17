@@ -64,3 +64,27 @@ func TestIsReachableNeighbour(t *testing.T) {
 		assert.Equal(t, s.Expected, result, fmt.Sprintf("Failed case: %s", s.Case))
 	}
 }
+
+func BenchmarkBoard_NextGen(b *testing.B) {
+	board := Board{
+		{false, false, false, false},
+		{false, true, false, false},
+		{false, true, true, false},
+		{false, true, false, false},
+	}
+	for i := 0; i < b.N; i++ {
+		board.NextGen()
+	}
+}
+
+func BenchmarkBoard_NextGenCell(b *testing.B) {
+	board := Board{
+		{false, false, false, false},
+		{false, true, false, false},
+		{false, true, true, false},
+		{false, true, false, false},
+	}
+	for i := 0; i < b.N; i++ {
+		IsReachableNeighbour(board, 3, 3, 1, 1)
+	}
+}
