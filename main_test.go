@@ -65,6 +65,22 @@ func TestIsReachableNeighbour(t *testing.T) {
 	}
 }
 
+func TestBoard_TextBoard(t *testing.T) {
+	b := Board{
+		{false, false, false, false},
+		{false, true, false, false},
+		{false, true, true, false},
+		{false, true, false, false},
+	}
+	expected := [][]string{
+		{" ", " ", " ", " "},
+		{" ", "x", " ", " "},
+		{" ", "x", "x", " "},
+		{" ", "x", " ", " "},
+	}
+	assert.Equal(t, b.TextBoard(), expected)
+}
+
 func BenchmarkBoard_NextGen(b *testing.B) {
 	board := Board{
 		{false, false, false, false},
