@@ -39,18 +39,12 @@ func TestBoard_NextGen(t *testing.T) {
 }
 
 func TestIsReachableNeighbour(t *testing.T) {
-	b := Board{
-		{true, true, true, true},
-		{true, true, true, true},
-		{true, true, true, true},
-		{true, true, true, true},
-	}
+	b := Board{}
 	type sample struct {
 		X, Y, OX, OY int
 		Case         string
 		Expected     bool
 	}
-
 	samples := func() []sample {
 		return []sample{
 			{0, 0, 0, 0, "top left cell without offsets is in range", true},
@@ -65,7 +59,6 @@ func TestIsReachableNeighbour(t *testing.T) {
 			{3, 3, 1, 1, "bottom right cell with offset y+1 is out of range", false},
 		}
 	}
-
 	for _, s := range samples() {
 		result := IsReachableNeighbour(b, s.X, s.Y, s.OX, s.OY)
 		assert.Equal(t, s.Expected, result, fmt.Sprintf("Failed case: %s", s.Case))
