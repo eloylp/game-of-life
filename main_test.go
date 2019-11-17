@@ -56,6 +56,9 @@ func TestIsReachableNeighbour(t *testing.T) {
 			{0, 0, -1, 0, false},
 			{0, 0, 0, -1, false},
 			{0, 3, 0, 1, false},
+			{3, 0, 1, 0, false},
+			{3, 3, 1, 0, false},
+			{3, 3, 1, 1, false},
 		}
 	}
 

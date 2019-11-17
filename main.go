@@ -45,7 +45,7 @@ func IsReachableNeighbour(board Board, x, y, ox, oy int) bool {
 	if y+oy > len(board)-1 || y+oy < 0 {
 		return false
 	}
-	if x+ox > len(board[y]) || x+ox < 0 {
+	if x+ox > len(board[y])-1 || x+ox < 0 {
 		return false
 	}
 	return true
