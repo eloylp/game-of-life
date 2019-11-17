@@ -57,7 +57,9 @@ func TestIsReachableNeighbour(t *testing.T) {
 			{0, 0, -1, 0, "top left cell with offset x-1 is out of range", false},
 			{0, 0, 0, -1, "top left cell with offset y-1 is out of range", false},
 			{0, 3, 0, 1, "bottom left cell with offset y+1 is out of range", false},
+			{0, 3, -1, 0, "bottom left cell with offset x-1 is out of range", false},
 			{3, 0, 1, 0, "top right cell with offset x+1 is out of range", false},
+			{3, 0, 0, -1, "top right cell with offset y-1 is out of range", false},
 			{3, 3, 1, 0, "bottom right cell with offset x+1 is out of range", false},
 			{3, 3, 1, 1, "bottom right cell with offset y+1 is out of range", false},
 		}
