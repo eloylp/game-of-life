@@ -37,7 +37,7 @@ func TestBoard_NextGen(t *testing.T) {
 	}
 }
 
-func TestBoard_CheckNeighbour(t *testing.T) {
+func TestIsReachableNeighbour(t *testing.T) {
 	b := Board{
 		{true, true, true, true},
 		{true, true, true, true},
@@ -46,7 +46,7 @@ func TestBoard_CheckNeighbour(t *testing.T) {
 	}
 	type sample struct {
 		X, Y, OX, OY int
-		Expected     Cell
+		Expected     bool
 	}
 
 	samples := func() []sample {
@@ -55,11 +55,12 @@ func TestBoard_CheckNeighbour(t *testing.T) {
 			{0, 0, 3, 3, true},
 			{0, 0, -1, 0, false},
 			{0, 0, 0, -1, false},
+			{0, 3, 0, 1, false},
 		}
 	}
 
 	for _, s := range samples() {
-		result := CheckNeighbour(b, s.X, s.Y, s.OX, s.OY)
+		result := IsReachableNeighbour(b, s.X, s.Y, s.OX, s.OY)
 		assert.Equal(t, s.Expected, result)
 	}
 }

@@ -28,7 +28,7 @@ func (b Board) NextCell(x, y int) Cell {
 	c := 0
 	currentCell := b[y][x]
 	for _, o := range offsets {
-		if (CheckNeighbour(b, x, y, o[0], o[1])) {
+		if CheckNeighbour(b, x, y, o[0], o[1]) {
 			c++
 		}
 	}
@@ -41,12 +41,19 @@ func (b Board) NextCell(x, y int) Cell {
 	return false
 }
 
-func CheckNeighbour(board Board, x, y, ox, oy int) Cell {
-	if y+oy > len(board) || y+oy < 0 {
+func IsReachableNeighbour(board Board, x, y, ox, oy int) bool {
+	if y+oy > len(board)-1 || y+oy < 0 {
 		return false
 	}
 	if x+ox > len(board[y]) || x+ox < 0 {
 		return false
+	}
+	return true
+}
+
+func CheckNeighbour(board Board, x, y, ox, oy int) Cell {
+	if !IsReachableNeighbour(board, x, y, ox, oy) {
+		return Cell(false)
 	}
 	return board[y+oy][x+ox]
 }
