@@ -6,13 +6,14 @@ import (
 	"testing"
 )
 
-type sample struct {
-	Matrix         Board
-	ExpectedMatrix Board
-}
+func TestBoard_NextGen(t *testing.T) {
 
-func samples() []sample {
-	return []sample{
+	type sample struct {
+		Matrix         Board
+		ExpectedMatrix Board
+	}
+
+	samples := []sample{
 		{
 			Matrix: Board{
 				{false, false, false, false},
@@ -28,10 +29,8 @@ func samples() []sample {
 			},
 		},
 	}
-}
 
-func TestBoard_NextGen(t *testing.T) {
-	for _, s := range samples() {
+	for _, s := range samples {
 
 		nextGen := s.Matrix.NextGen()
 		assert.Equal(t, s.ExpectedMatrix, nextGen)
