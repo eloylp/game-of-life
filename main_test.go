@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )
@@ -67,6 +68,6 @@ func TestIsReachableNeighbour(t *testing.T) {
 
 	for _, s := range samples() {
 		result := IsReachableNeighbour(b, s.X, s.Y, s.OX, s.OY)
-		assert.Equal(t, s.Expected, result)
+		assert.Equal(t, s.Expected, result, fmt.Sprintf("Failed case: %s", s.Case))
 	}
 }
