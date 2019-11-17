@@ -7,13 +7,13 @@ func (b Board) NextGen() Board {
 	newBoard := Board{}
 	for y := 0; y < len(b); y++ {
 		for x := 0; x < len(b[x]); x++ {
-			newBoard[y][x] = b.NextCell(x, y)
+			newBoard[y][x] = b.NextGenCell(x, y)
 		}
 	}
 	return newBoard
 }
 
-var offsets = [8][2]int{
+var neighbourOffsets = [8][2]int{
 	{+1, +1},
 	{+1, 0},
 	{+1, -1},
@@ -24,21 +24,25 @@ var offsets = [8][2]int{
 	{0, +1},
 }
 
-func (b Board) NextCell(x, y int) Cell {
-	c := 0
+func (b Board) NextGenCell(x, y int) Cell {
+	neighbours := 0
 	currentCell := b[y][x]
-	for _, o := range offsets {
-		if CheckNeighbour(b, x, y, o[0], o[1]) {
-			c++
+	for _, o := range neighbourOffsets {
+		if Neighbour(b, x, y, o[0], o[1]) {
+			neighbours++
 		}
 	}
-	if !currentCell && c == 3 {
+	if !currentCell && neighbours == 3 {
 		return true
 	}
-	if currentCell && (c == 2 || c == 3) {
+	if currentCell && (neighbours == 2 || neighbours == 3) {
 		return true
 	}
 	return false
+}
+
+func main() {
+
 }
 
 func IsReachableNeighbour(board Board, x, y, ox, oy int) bool {
@@ -51,12 +55,9 @@ func IsReachableNeighbour(board Board, x, y, ox, oy int) bool {
 	return true
 }
 
-func CheckNeighbour(board Board, x, y, ox, oy int) Cell {
+func Neighbour(board Board, x, y, ox, oy int) Cell {
 	if !IsReachableNeighbour(board, x, y, ox, oy) {
 		return Cell(false)
 	}
 	return board[y+oy][x+ox]
-}
-
-func main() {
 }
