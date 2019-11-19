@@ -19,7 +19,7 @@ func NewGame(initialBoard Board, generations, intervalSecs int) *game {
 }
 
 func (g game) Run() {
-	for i := 0; i < g.generations; i++ {
+	for i := 0; i <= g.generations; i++ {
 		g.clearTerminal()
 		g.outputMatrix(i)
 		time.Sleep(time.Second * time.Duration(g.intervalSec))
