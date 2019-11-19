@@ -38,7 +38,12 @@ func TestBoard_NextGen(t *testing.T) {
 }
 
 func TestIsReachableNeighbour(t *testing.T) {
-	b := Board{}
+	b := Board{
+		{false, false, false, false},
+		{false, false, false, false},
+		{false, false, false, false},
+		{false, false, false, false},
+	}
 	type sample struct {
 		X, Y, OX, OY int
 		Case         string

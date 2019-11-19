@@ -1,22 +1,22 @@
 package main
 
 type Cell bool
-type Board [4][4]Cell
+type Board [][]Cell
 
 func (b Board) NextGen() Board {
-	newBoard := Board{}
+	newBoard := make(Board, len(b))
 	for y := 0; y < len(b); y++ {
-		for x := 0; x < len(b[x]); x++ {
-			newBoard[y][x] = b.NextGenCell(x, y)
+		for x := 0; x < len(b[y]); x++ {
+			newBoard[y] = append(newBoard[y], b.NextGenCell(x, y))
 		}
 	}
 	return newBoard
 }
 
 func (b Board) TextBoard() [][]string {
-	newBoard := make([][]string, 4)
+	newBoard := make([][]string, len(b))
 	for y := 0; y < len(b); y++ {
-		for x := 0; x < len(b[x]); x++ {
+		for x := 0; x < len(b[y]); x++ {
 			c := b[y][x]
 			if c {
 				newBoard[y] = append(newBoard[y], "x")
