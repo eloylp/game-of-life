@@ -110,7 +110,7 @@ func BenchmarkBoard_NextGenCell(b *testing.B) {
 }
 
 func TestRandomBoard(t *testing.T) {
-	b := RandomBoard(10, 30)
+	b := RandomBoard(30, 10)
 	assert.Equal(t, 10, len(b))
 	assert.Equal(t, 30, len(b[9]))
 }

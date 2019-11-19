@@ -77,7 +77,7 @@ func Neighbour(board Board, x, y, ox, oy int) Cell {
 	return board[y+oy][x+ox]
 }
 
-func RandomBoard(boardY int, boardX int) Board {
+func RandomBoard(boardX int, boardY int) Board {
 	cells := []Cell{
 		Cell(true),
 		Cell(false),
