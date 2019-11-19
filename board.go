@@ -1,5 +1,9 @@
 package main
 
+import (
+	"math/rand"
+)
+
 type Cell bool
 type Board [][]Cell
 
@@ -71,4 +75,18 @@ func Neighbour(board Board, x, y, ox, oy int) Cell {
 		return Cell(false)
 	}
 	return board[y+oy][x+ox]
+}
+
+func RandomBoard(boardY int, boardX int) Board {
+	cells := []Cell{
+		Cell(true),
+		Cell(false),
+	}
+	b := make(Board, boardY)
+	for y := 0; y < boardY; y++ {
+		for x := 0; x < boardX; x++ {
+			b[y] = append(b[y], cells[rand.Intn(len(cells))])
+		}
+	}
+	return b
 }

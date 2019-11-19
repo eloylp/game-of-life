@@ -108,3 +108,9 @@ func BenchmarkBoard_NextGenCell(b *testing.B) {
 		IsReachableNeighbour(board, 3, 3, 1, 1)
 	}
 }
+
+func TestRandomBoard(t *testing.T) {
+	b := RandomBoard(10, 30)
+	assert.Equal(t, 10, len(b))
+	assert.Equal(t, 30, len(b[9]))
+}
