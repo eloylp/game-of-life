@@ -30,7 +30,6 @@ func (g game) Run() {
 func (g game) outputMatrix(generationNum int) {
 	table := tablewriter.NewWriter(os.Stdout)
 	table.SetBorder(true)
-	table.SetColWidth(10)
 	table.SetRowLine(true)
 	table.SetCaption(true, fmt.Sprintf("Generation %v", generationNum))
 	table.AppendBulk(g.board.TextBoard())
