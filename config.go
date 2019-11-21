@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"flag"
 )
 
@@ -19,4 +20,20 @@ func Config() Cfg {
 	flag.Parse()
 
 	return c
+}
+
+func CheckConfig(cfg Cfg) error {
+	if cfg.boardX < 1 {
+		return errors.New("Cannot set X axis under 1")
+	}
+	if cfg.boardY < 1 {
+		return errors.New("Cannot set Y axis under 1")
+	}
+	if cfg.generations < 1 {
+		return errors.New("Cannot set generations  under 1")
+	}
+	if cfg.intervalSecs < 1 {
+		return errors.New("Cannot set intervals  under 1")
+	}
+	return nil
 }
