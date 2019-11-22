@@ -9,12 +9,14 @@ import (
 func TestBoard_NextGen(t *testing.T) {
 
 	type sample struct {
+		Case           string
 		Matrix         Board
 		ExpectedMatrix Board
 	}
 
 	samples := []sample{
 		{
+			Case: "Generation 1, when board must maintain and create new cells.",
 			Matrix: Board{
 				{false, false, false, false},
 				{false, true, false, false},
@@ -28,12 +30,27 @@ func TestBoard_NextGen(t *testing.T) {
 				{false, true, true, false},
 			},
 		},
+		{
+			Case: "Generation 2, when board must kill, maintain and create some cells.",
+			Matrix: Board{
+				{false, false, false, false},
+				{false, true, true, false},
+				{true, true, true, false},
+				{false, true, true, false},
+			},
+			ExpectedMatrix: Board{
+				{false, false, false, false},
+				{true, false, true, false},
+				{true, false, false, true},
+				{true, false, true, false},
+			},
+		},
 	}
 
 	for _, s := range samples {
 
 		nextGen := s.Matrix.NextGen()
-		assert.Equal(t, s.ExpectedMatrix, nextGen)
+		assert.Equal(t, s.ExpectedMatrix, nextGen, fmt.Sprintf("Failed case: %s", s.Case))
 	}
 }
 
