@@ -28,12 +28,12 @@ gol -x 20 -y 20 -g 100 -i 2
 
 This will bring more life to your computer !
 
-How to run tests
+## How to run tests
 ```bash
 go test
 ```
 
-How to run benchmark tests
+## How to run benchmark tests
 ```bash
 go test -bench=.
 ```
