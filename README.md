@@ -1,4 +1,5 @@
 # Conway`s game-of-life, written in Go .
+[![Build Status](https://travis-ci.com/eloylp/game-of-life.svg?branch=master)](https://travis-ci.com/eloylp/game-of-life)
 
 https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
 
